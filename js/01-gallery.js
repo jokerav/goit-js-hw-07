@@ -2,10 +2,14 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const gallery = document.querySelector(".gallery");
 //console.log(galleryItems);
-galleryItems.map((img) => {
-  gallery.insertAdjacentHTML(
-    "beforeend",
-    `
+
+createGalleryMarkup();
+
+function createGalleryMarkup() {
+  galleryItems.map((img) => {
+    gallery.insertAdjacentHTML(
+      "beforeend",
+      `
     <div class="gallery__item">
       <a class="gallery__link" href=${img.original}>
         <img
@@ -16,5 +20,6 @@ galleryItems.map((img) => {
         />
       </a>
     </div>`
-  );
-});
+    );
+  });
+}
