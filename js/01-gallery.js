@@ -4,6 +4,7 @@ const gallery = document.querySelector(".gallery");
 //console.log(galleryItems);
 
 createGalleryMarkup();
+gallery.addEventListener("click", onImageClick);
 
 function createGalleryMarkup() {
   galleryItems.map((img) => {
@@ -22,4 +23,12 @@ function createGalleryMarkup() {
     </div>`
     );
   });
+}
+function onImageClick(event) {
+  event.preventDefault();
+  if (event.target.nodeName != "IMG") {
+    return;
+  } else {
+    return event.target.dataset.source;
+  }
 }
