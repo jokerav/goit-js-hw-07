@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const gallery = document.querySelector(".gallery");
-//console.log(galleryItems);
-
 createGalleryMarkup();
 gallery.addEventListener("click", onImageClick);
 
@@ -24,11 +22,24 @@ function createGalleryMarkup() {
     );
   });
 }
-function onImageClick(event) {
-  event.preventDefault();
-  if (event.target.nodeName != "IMG") {
+function onImageClick(e) {
+  e.preventDefault();
+  if (e.target.nodeName != "IMG") {
     return;
-  } else {
-    return event.target.dataset.source;
   }
+  showModalImage(e);
 }
+function showModalImage(e) {
+  const instance = basicLightbox.create(`
+    <img src=${e.target.dataset.source} width="800" height="600">
+`);
+  instance.show();
+}
+
+//instance.addEventListener("keydown", onEscPress);
+// function onEscPress(event) {
+//   if (event.code != 27) {
+//     return;
+//   }
+//   instance.close();
+// }
