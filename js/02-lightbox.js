@@ -18,5 +18,5 @@ function createGalleryMarkup() {
 let lightbox = new SimpleLightbox(".gallery a", {
   /* options */
   captionsData: "alt",
-  captionDelay: 250,
+  captionDelay: "--animation-duration",
 });
