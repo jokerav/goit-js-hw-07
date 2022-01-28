@@ -34,12 +34,14 @@ function showModalImage(e) {
     <img src=${e.target.dataset.source} width="800" height="600">
 `);
   instance.show();
-}
+  gallery.addEventListener("keydown", onEsc);
 
-//instance.addEventListener("keydown", onEscPress);
-// function onEscPress(event) {
-//   if (event.code != 27) {
-//     return;
-//   }
-//   instance.close();
-// }
+  function onEsc(event) {
+    console.log(event);
+    if (event.code != "Escape") {
+      return;
+    }
+    instance.close();
+    gallery.removeEventListener("keydown", onEsc);
+  }
+}
