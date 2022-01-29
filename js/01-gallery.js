@@ -30,18 +30,26 @@ function onImageClick(e) {
   showModalImage(e);
 }
 function showModalImage(e) {
-  const instance = basicLightbox.create(`
-    <img src=${e.target.dataset.source} width="800" height="600">
-`);
-  instance.show(() => gallery.addEventListener("keydown", onEsc));
+  const instance = basicLightbox.create(
+    `<img src=${e.target.dataset.source} width="800" height="600">`,
+    {
+      onShow: (instance) => {
+        gallery.addEventListener("keydown", onEsc);
+      },
+    },
+    {
+      onClose: (instance) => {
+        gallery.removeEventListener("keydown", onEsc);
+      },
+    }
+  );
+
+  instance.show();
 
   function onEsc(event) {
-    //console.log(event);
     if (event.code != "Escape") {
       return;
     }
-    instance.close(() => {
-      gallery.removeEventListener("keydown", onEsc);
-    });
+    instance.close();
   }
 }
