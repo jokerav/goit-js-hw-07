@@ -34,12 +34,12 @@ function showModalImage(e) {
     `<img src=${e.target.dataset.source} width="800" height="600">`,
     {
       onShow: (instance) => {
-        gallery.addEventListener("keydown", onEsc);
+        window.addEventListener("keydown", onEsc);
       },
     },
     {
       onClose: (instance) => {
-        gallery.removeEventListener("keydown", onEsc);
+        window.removeEventListener("keydown", onEsc);
       },
     }
   );
